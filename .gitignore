@@ -7,7 +7,12 @@
 .idea/artifacts
 
 /.gradle/
-/build/
+
+/build/*
+!/build/libs/
+/build/libs/*
+!/build/libs/NICommands.txt
+
 /test/
 target
 out

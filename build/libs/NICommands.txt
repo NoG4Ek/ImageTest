@@ -1,0 +1,10 @@
+*1*AGENTLIB or AgentExceptions.bat
+java -agentlib:native-image-agent=config-merge-dir=META-INF\native-image -jar .\ImageTest.jar [[[inputFile]]]
+
+*2*BUILD AN INSTRUMENTED NATIVE IMAGE
+native-image -H:JNIConfigurationFiles=META-INF\native-image\jni-config.json -H:DynamicProxyConfigurationFiles=META-INF\native-image\proxy-config.json -H:ReflectionConfigurationFiles=META-INF\native-image\reflect-config.json -H:ResourceConfigurationFiles=META-INF\native-image\resource-config.json -H:SerializationConfigurationFiles=META-INF\native-image\serialization-config.json --initialize-at-build-time=net.coobird.thumbnailator.Thumbnails,net.coobird.thumbnailator.name.Rename --pgo-instrument -jar ImageTest.jar
+
+*4*EXEC BUILDED INSTRUMENT
+
+*3*BUILD DLL
+native-image -H:JNIConfigurationFiles=META-INF\native-image\jni-config.json -H:DynamicProxyConfigurationFiles=META-INF\native-image\proxy-config.json -H:ReflectionConfigurationFiles=META-INF\native-image\reflect-config.json -H:ResourceConfigurationFiles=META-INF\native-image\resource-config.json -H:SerializationConfigurationFiles=META-INF\native-image\serialization-config.json --initialize-at-build-time=net.coobird.thumbnailator.Thumbnails,net.coobird.thumbnailator.name.Rename --pgo=default.iprof --shared -jar ImageTest.jar
