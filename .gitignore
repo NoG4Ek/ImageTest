@@ -12,6 +12,7 @@
 !/build/libs/
 /build/libs/*
 !/build/libs/NICommands.txt
+!/build/libs/*.jar
 
 /test/
 target
